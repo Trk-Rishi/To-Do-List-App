@@ -14,6 +14,7 @@ def get_tasks():
         with open(file_name, "r") as f:
             data = f.read()
             print("Sure, here's the tasks ...")
+            print()
             print(data)
             print()
             time.sleep(1.5)
@@ -23,12 +24,12 @@ def get_tasks():
 
 def save_task(task:str):
     with open(file_name, "a") as f:
-        f.write(f"{task}\n")
         print("Add a time to complete this task by...")
         date = input("Set Task Time ---> \ne.g.(15/10/2026 18:50)\nEnter: ")
         time_ = datetime.datetime.strptime(date, "%d/%m/%Y %H:%M")
         print("Task Successfully Added...")
         print("Date Set:",time_.strftime("%A, %d %B %Y, %I:%M %p"))
+        f.write(f"{task} ---> {time_.strftime("%A, %d %B %Y, %I:%M %p")}\n")
         time.sleep(1)
         print()
 
@@ -47,4 +48,4 @@ def delete_list():
         print("Authorisation Failed")
         print("Input did not match the correct code!!!")
 
-save_task("1. Hi Guys")
+get_tasks()
