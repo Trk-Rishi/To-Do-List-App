@@ -10,21 +10,26 @@ file_name = "ToDoTaskList.txt"
 def get_tasks():
     with open(file_name, "r") as f:
         data = f.read()
-        print(data)
         print("Sure, here's the tasks ...")
+        print(data)
         time.sleep(1.5)
-get_tasks()
 
-def save_task(task):
-    with open(file_name, "w") as f:
+
+def save_task(task:str):
+    with open(file_name, "a") as f:
         f.write(f"{task}\n")
         print("Task Successfully Added...")
 
-save_task("I'm the Coder !!!")
+save_task("1. Say Hello")
 get_tasks()
 
-save_task("Testing 1 2 3")
+save_task("2. Say Wssup")
 get_tasks()
 
-save_task("Is this on top ???")
+def clear_list():
+    with open(file_name,"w") as f:
+        f.write("")
+        print("List Cleared Successfully")
+
+clear_list()
 get_tasks()
