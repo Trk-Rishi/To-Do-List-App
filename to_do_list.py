@@ -60,7 +60,7 @@ def show_tasks():
             task_list.insert(tk.END, task.strip())
 
     except FileNotFoundError:
-        messagebox.showinfo("Tasks","No Such To-Do List exists")
+        pass
 
 def delete_tasks():
     answer = messagebox.askyesno("CONFIRM","Are you sure you want to delete the list ?")
@@ -68,10 +68,11 @@ def delete_tasks():
         try:
             os.remove(file_name)
             show_tasks()
-            messagebox.showinfo("\{Success\}","List Deleted Successfully")
+            messagebox.showinfo("{Success}","List Deleted Successfully")
+            root.destroy()
 
         except FileNotFoundError:
-            messagebox.showinfo("Info","List doesn't Exist")
+            messagebox.showerror("Error","No List Exists")
 
 
 
@@ -160,7 +161,5 @@ delete_button = tk.Button(
     command=delete_tasks
 )
 delete_button.pack(pady=3)
-
-show_tasks()
 
 root.mainloop()
