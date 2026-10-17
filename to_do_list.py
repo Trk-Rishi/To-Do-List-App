@@ -127,8 +127,8 @@ def toggle_numbering():
             pass
     check = tk.BooleanVar(value=False)
 
-    numbering_button = tk.Checkbutton(root,text="Numbering",variable=check,command=update_numbering)
-    numbering_button.pack(side=tk.RIGHT)
+    numbering_button = tk.Checkbutton(list_frame,text="Numbering",variable=check,command=update_numbering)
+    numbering_button.pack(side=tk.LEFT, padx=5)
         
 
 
@@ -171,8 +171,11 @@ add_button.pack(pady=5)
 # )
 # show_button.pack(pady=5)
 
-task_list = tk.Listbox(root, width=60, height=12)
-task_list.pack(pady=10)
+list_frame = tk.Frame(root)
+list_frame.pack(pady=10)
+
+task_list = tk.Listbox(list_frame, width=60, height=12)
+task_list.pack(side=tk.LEFT)
 
 toggle_numbering()
 
@@ -192,3 +195,4 @@ delete_button = tk.Button(
 delete_button.pack(pady=3)
 
 root.mainloop()
+
