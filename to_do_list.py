@@ -107,11 +107,37 @@ def add_task():
         messagebox.showerror("Invalid Date","Enter date as DD/MM/YYYY HH:MM")
 
 
+def toggle_numbering():
+    numbering = tk.BooleanVar(value=False)
+
+    def update_numbering():
+        task_list.delete(0, tk.END)
+
+        try:
+            with open(file_name, "r") as f:
+                data = f.readlines()
+
+            for i , task in enumerate(data , start=1):
+                if check.get():
+                    task_list.insert(tk.END, f"{i}.  {task.strip()}")
+
+                else:
+                    task_list.insert(tk.END , task.strip())
+        except FileNotFoundError:
+            pass
+    check = tk.BooleanVar(value=False)
+
+    numbering_button = tk.Checkbutton(root,text="Numbering",variable=check,command=update_numbering)
+    numbering_button.pack(side=tk.RIGHT)
+        
+
 
 
 root = tk.Tk()
 root.title("To-Do List")
 root.geometry("500x500")
+
+
 
 title = tk.Label(root, text="MY TO-DO LIST", font=("Arial", 18))
 title.pack(pady=10)
@@ -147,6 +173,9 @@ add_button.pack(pady=5)
 
 task_list = tk.Listbox(root, width=60, height=12)
 task_list.pack(pady=10)
+
+toggle_numbering()
+
 
 clear_button = tk.Button(
     root,
