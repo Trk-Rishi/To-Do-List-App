@@ -132,6 +132,24 @@ def toggle_numbering():
         
 
 
+def mark_completed():
+    try:
+        selected = task_list.curselection()[0]
+
+        with open(file_name,"r",encoding="utf-8") as f:
+            data = f.readlines()
+
+        if not data[selected].rstrip().endswith("[✓]"):
+            data[selected] = data[selected].rstrip("\n") + "[✓]\n"
+
+            with open(file_name,"w",encoding="utf-8") as f:
+                f.writelines(data)
+
+        task_list.delete(selected)
+        task_list.insert(selected, data[selected].strip())
+
+    except IndexError:
+        messagebox.showwarning("Warning.","Select a task first !!!")
 
 root = tk.Tk()
 root.title("To-Do List")
@@ -180,6 +198,9 @@ task_list.pack(side=tk.LEFT)
 toggle_numbering()
 
 
+complete_button = tk.Button(root,text="Mark task as completed",command=mark_completed)
+complete_button.pack(pady=3)
+
 clear_button = tk.Button(
     root,
     text="Clear List",
@@ -195,4 +216,9 @@ delete_button = tk.Button(
 delete_button.pack(pady=3)
 
 root.mainloop()
+
+##hello ..
+#testing...
+
+##helllooo testingg again....
 
