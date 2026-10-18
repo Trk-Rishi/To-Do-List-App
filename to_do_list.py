@@ -127,7 +127,7 @@ def toggle_numbering():
             pass
     check = tk.BooleanVar(value=False)
 
-    numbering_button = tk.Checkbutton(list_frame,text="Numbering",variable=check,command=update_numbering)
+    numbering_button = tk.Checkbutton(list_frame,text="Numbering",variable=check,command=update_numbering,bg="#cc9d02",fg="#000000")
     numbering_button.pack(side=tk.LEFT, padx=5)
         
 
@@ -155,12 +155,14 @@ root = tk.Tk()
 root.title("To-Do List")
 root.geometry("500x500")
 
+root.configure(bg="#000000")
 
 
-title = tk.Label(root, text="MY TO-DO LIST", font=("Arial", 18))
+
+title = tk.Label(root, text="MY TO-DO LIST", font=("Arial", 18),bg="#cc9d02",fg="#000000")
 title.pack(pady=10)
 
-task_label = tk.Label(root, text="Enter Task:")
+task_label = tk.Label(root, text="Enter Task:",bg="#cc9d02",fg="#000000")
 task_label.pack()
 
 task_entry = tk.Entry(root, width=40)
@@ -168,17 +170,17 @@ task_entry.pack(pady=5)
 
 date_label = tk.Label(
     root,
-    text="Deadline (DD/MM/YYYY HH:MM):"
+    text="Deadline (DD/MM/YYYY HH:MM):",bg="#cc9d02",fg="#000000"
 )
 date_label.pack()
 
-date_entry = tk.Entry(root, width=40)
+date_entry = tk.Entry(root, width=40,)
 date_entry.pack(pady=5)
 
 add_button = tk.Button(
     root,
     text="Add Task",
-    command=add_task
+    command=add_task,bg="#cc9d02",fg="#000000"
 )
 add_button.pack(pady=5)
 
@@ -198,27 +200,30 @@ task_list.pack(side=tk.LEFT)
 toggle_numbering()
 
 
-complete_button = tk.Button(root,text="Mark task as completed",command=mark_completed)
+complete_button = tk.Button(root,text="Mark task as completed",command=mark_completed,bg="#cc9d02",fg="#000000")
 complete_button.pack(pady=3)
 
 clear_button = tk.Button(
     root,
     text="Clear List",
-    command=clear_tasks
+    command=clear_tasks,bg="#cc9d02",fg="#000000"
 )
 clear_button.pack(pady=3)
+
+
 
 delete_button = tk.Button(
     root,
     text="Delete List",
-    command=delete_tasks
+    command=delete_tasks,bg="#cc9d02",fg="#000000",bd=0,
+    relief="flat",
 )
 delete_button.pack(pady=3)
 
+show_tasks()
 root.mainloop()
 
 ##hello ..
 #testing...
 
 ##helllooo testingg again....
-
