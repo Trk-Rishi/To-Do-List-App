@@ -175,7 +175,7 @@ def search_tasks():
 
 root = tk.Tk()
 root.title("To-Do List")
-root.geometry("500x500")
+root.geometry("600x630")
 
 root.configure(bg="#000000")
 
@@ -215,7 +215,7 @@ search_button = tk.Button(root,text="Search", command=search_tasks,bg="#40a55f",
 search_button.pack(pady=3)
 
 clear_search_button = tk.Button(root,text="Clear Search",command=clear_search,bg="#40a55f",fg="#000000")
-
+clear_search_button.pack(pady=3)
 
 # show_button = tk.Button(
 #     root,
@@ -227,8 +227,20 @@ clear_search_button = tk.Button(root,text="Clear Search",command=clear_search,bg
 list_frame = tk.Frame(root)
 list_frame.pack(pady=10)
 
-task_list = tk.Listbox(list_frame, width=60, height=12)
+task_list = tk.Listbox(
+    list_frame,
+    width=60,
+    height=12
+)
 task_list.pack(side=tk.LEFT)
+
+scrollbar = tk.Scrollbar(
+    list_frame,
+    command=task_list.yview
+)
+scrollbar.pack(side=tk.LEFT, fill=tk.Y)
+
+task_list.config(yscrollcommand=scrollbar.set)
 
 toggle_numbering()
 
@@ -258,5 +270,3 @@ root.mainloop()
 
 ##hello ..
 #testing...
-
-##helllooo testingg again....
