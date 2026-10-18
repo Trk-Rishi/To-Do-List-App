@@ -131,6 +131,9 @@ def toggle_numbering():
     numbering_button.pack(side=tk.LEFT, padx=5)
         
 
+def clear_search():
+    search_entry.delete(0,tk.END)
+    show_tasks()
 
 def mark_completed():
     try:
@@ -151,6 +154,25 @@ def mark_completed():
     except IndexError:
         messagebox.showwarning("Warning.","Select a task first !!!")
 
+def search_tasks():
+    search = search_entry.get().lower()
+    task_list.delete(0, tk.END)
+
+
+    try:
+        with open(file_name,"r",encoding="utf-8") as f:
+            data = f.readlines()
+
+        for task in data:
+            if search in task.lower():
+                task_list.insert(tk.END,task.strip())
+
+    except FileNotFoundError:
+        pass
+ 
+
+
+
 root = tk.Tk()
 root.title("To-Do List")
 root.geometry("500x500")
@@ -170,8 +192,7 @@ task_entry.pack(pady=5)
 
 date_label = tk.Label(
     root,
-    text="Deadline (DD/MM/YYYY HH:MM):",bg="#cc9d02",fg="#000000"
-)
+    text="Deadline (DD/MM/YYYY HH:MM):",bg="#cc9d02",fg="#000000")
 date_label.pack()
 
 date_entry = tk.Entry(root, width=40,)
@@ -180,9 +201,21 @@ date_entry.pack(pady=5)
 add_button = tk.Button(
     root,
     text="Add Task",
-    command=add_task,bg="#cc9d02",fg="#000000"
+    command=add_task,bg="#40a55f",fg="#000000"
 )
 add_button.pack(pady=5)
+
+search_label = tk.Label(root,text="Search Tasks",bg="#cc9d02",fg="#000000")
+search_label.pack()
+
+search_entry = tk.Entry(root,width=40)
+search_entry.pack(pady=5)
+
+search_button = tk.Button(root,text="Search", command=search_tasks,bg="#40a55f",fg="#000000")
+search_button.pack(pady=3)
+
+clear_search_button = tk.Button(root,text="Clear Search",command=clear_search,bg="#40a55f",fg="#000000")
+
 
 # show_button = tk.Button(
 #     root,
@@ -200,13 +233,13 @@ task_list.pack(side=tk.LEFT)
 toggle_numbering()
 
 
-complete_button = tk.Button(root,text="Mark task as completed",command=mark_completed,bg="#cc9d02",fg="#000000")
+complete_button = tk.Button(root,text="Mark task as completed",command=mark_completed,bg="#40a55f",fg="#000000")
 complete_button.pack(pady=3)
 
 clear_button = tk.Button(
     root,
     text="Clear List",
-    command=clear_tasks,bg="#cc9d02",fg="#000000"
+    command=clear_tasks,bg="#40a55f",fg="#000000"
 )
 clear_button.pack(pady=3)
 
@@ -215,7 +248,7 @@ clear_button.pack(pady=3)
 delete_button = tk.Button(
     root,
     text="Delete List",
-    command=delete_tasks,bg="#cc9d02",fg="#000000",bd=0,
+    command=delete_tasks,bg="#40a55f",fg="#000000",bd=0,
     relief="flat",
 )
 delete_button.pack(pady=3)
